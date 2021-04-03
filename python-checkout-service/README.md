@@ -10,7 +10,7 @@ https://www.youtube.com/watch?v=qbLc5a9jdXo&t=2388s
 
 
 Build the image  
-`sudo docker build . -t python-products-api:latest`
+`sudo docker build . -t python-checkout-service:latest`
 
 Run the container  
-`sudo docker run --rm --name flask --env-file=.env --network=host python-products-api:latest`
+`sudo docker run --rm --name python-checkout-service --env-file=.env --network=host python-checkout-service:latest`

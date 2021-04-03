@@ -1,4 +1,4 @@
-# python-products-api
+# python-products-service
 Repository to learn microservices.  
 This is a simple Python Flask API that returns data from a JSON file (imagine its a DB).  
 
@@ -10,7 +10,7 @@ https://www.youtube.com/watch?v=qbLc5a9jdXo&t=2388s
 
 
 Build the image  
-`sudo docker build . -t python-products-api:latest`
+`sudo docker build . -t python-products-service:latest`
 
 Run the container  
-`sudo docker run --rm --name flask --env-file=.env --network=host python-products-api:latest`
+`sudo docker run --rm --name python-products-service --env-file=.env --network=host python-products-service:latest`
