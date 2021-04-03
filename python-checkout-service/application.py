@@ -15,7 +15,7 @@ products_url = os.getenv("PRODUCTS_URL")
 
 @app.route('/')
 def index():
-  return 'Hello checkout!'
+  return 'Hello from Python Checkout Service!'
 
 
 @app.route('/products')

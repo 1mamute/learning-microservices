@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  nodejs-catalog-service:
+    env_file: ./nodejs-catalog-service/.env
+    image: nodejs-catalog-service:latest
+    restart: always
+    build: ./nodejs-catalog-service
+    container_name: nodejs-catalog-service
+    ports:
+      - 8000:8000
+  python-checkout-service:
+    env_file: ./python-checkout-service/.env
+    image: python-checkout-service:latest
+    restart: always
+    build: ./python-checkout-service
+    container_name: python-checkout-service
+    ports:
+      - 8002:5000
+  python-products-service:
+    env_file: ./python-products-service/.env
+    image: python-products-service:latest
+    restart: always
+    build: ./python-products-service/
+    container_name: python-products-service
+    ports:
+      - 8003:5000

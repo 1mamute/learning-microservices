@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-  return 'Hello!'
+  return 'Hello from Python Products Service!'
 
 
 @app.route('/products')
