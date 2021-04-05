@@ -1,6 +1,5 @@
 from flask import Flask
 from dotenv import load_dotenv
-import json
 import os
 import requests
 
@@ -10,7 +9,7 @@ load_dotenv()
 
 app = Flask(__name__)
 
-products_url = "http://127.0.0.1:8002"
+products_url = "python-products-service:8002"
 
 
 @app.route('/')
@@ -18,11 +17,16 @@ def index():
   return 'Hello from Python Checkout Service!'
 
 
-@app.route('/<uuid>')
+@app.route('/products')
+def display_all_checkout():
+  response = requests.get(products_url + "/products")
+  print(response.status_code)
+  return response.content
+
+
+@app.route('/product/<uuid>')
 def display_checkout(uuid):
-  products_endpoint = products_url + "/product/" + uuid
-  print(products_endpoint)
-  response = requests.get(products_endpoint)
+  response = requests.get(products_url + "/product/" + uuid)
   print(response.status_code)
   print(response.content)
   return 'Product uuid: ' + uuid

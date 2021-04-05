@@ -26,6 +26,8 @@ services:
       - 8002:5000
     depends_on:
       - "mongo"
+    networks:
+      - mongo-network
   mongo:
     image: mongo:latest
     restart: always
@@ -34,7 +36,8 @@ services:
     volumes:
       - ./mongo-products-db/products.json:/docker-entrypoint-initdb.d/products.json:ro
       - ./mongo-products-db/initializing.sh:/docker-entrypoint-initdb.d/initializing.sh:ro
-
+    networks:
+      - mongo-network
   mongo-express:
     image: mongo-express
     restart: always
@@ -44,3 +47,9 @@ services:
     container_name: mongodb-express
     depends_on:
       - "mongo"
+    networks:
+      - mongo-network
+
+networks:
+  mongo-network:
+    driver: bridge
