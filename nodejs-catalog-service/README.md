@@ -9,4 +9,4 @@ Build the image
 `sudo docker build . -t nodejs-catalog-service:latest`
 
 Run the container  
-`sudo docker run --rm --name nodejs-catalog-service --env-file=.env --network=host nodejs-catalog-service:latest`
+`sudo docker run --rm --name nodejs-catalog-service --env-file=.env -p 8000:8000 nodejs-catalog-service:latest`

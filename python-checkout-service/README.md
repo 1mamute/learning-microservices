@@ -13,4 +13,4 @@ Build the image
 `sudo docker build . -t python-checkout-service:latest`
 
 Run the container  
-`sudo docker run --rm --name python-checkout-service --env-file=.env --network=host python-checkout-service:latest`
+`sudo docker run --rm --name python-checkout-service --env-file=.env -p 8001:5000 python-checkout-service:latest`

@@ -13,4 +13,4 @@ Build the image
 `sudo docker build . -t python-products-service:latest`
 
 Run the container  
-`sudo docker run --rm --name python-products-service --env-file=.env --network=host python-products-service:latest`
+`sudo docker run --rm --name python-products-service --env-file=.env -p 8002:5000 python-products-service:latest`
