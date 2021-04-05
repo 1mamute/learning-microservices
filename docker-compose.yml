@@ -24,3 +24,20 @@ services:
     container_name: python-products-service
     ports:
       - 8002:5000
+    depends_on:
+      - "mongo"
+  mongo:
+    image: mongo
+    restart: always
+    env_file: ./mongo-products-db/.env
+    container_name: mongodb
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8003:8081
+    env_file: ./mongo-express/.env
+    container_name: mongodb-express
+    depends_on:
+      - "mongo"
