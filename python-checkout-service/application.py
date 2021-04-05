@@ -10,7 +10,7 @@ load_dotenv()
 
 app = Flask(__name__)
 
-products_url = os.getenv("PRODUCTS_URL")
+products_url = "http://127.0.0.1:8002"
 
 
 @app.route('/')
@@ -18,16 +18,11 @@ def index():
   return 'Hello from Python Checkout Service!'
 
 
-@app.route('/products')
-def get_products():
-  with open(dir_path + '/' + 'products.json') as json_file:
-    data = json.load(json_file)
-    return json.dumps(data, indent=4)
-
-
 @app.route('/<uuid>')
 def display_checkout(uuid):
-  response = requests.get(products_url + "/product" + uuid)
+  products_endpoint = products_url + "/product/" + uuid
+  print(products_endpoint)
+  response = requests.get(products_endpoint)
   print(response.status_code)
   print(response.content)
   return 'Product uuid: ' + uuid
