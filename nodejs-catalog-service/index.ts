@@ -6,7 +6,7 @@ dotenv.config({ path: __dirname + '/.env' });
 
 const app = express();
 const PORT = process.env.PORT;
-const PRODUCTS_URL = 'http://127.0.0.1:5000'
+const PRODUCTS_URL = 'http://127.0.0.1:8002'
 
 app.get('/', (req, res) => res.send('Hello from Node Catalog Service!'));
 

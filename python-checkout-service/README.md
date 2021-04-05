@@ -1,4 +1,4 @@
-# python-products-api
+# python-checkout-service
 Repository to learn microservices.  
 This is a simple Python Flask API that returns data from a JSON file (imagine its a DB).  
 
