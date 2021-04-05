@@ -26,12 +26,15 @@ services:
       - 8002:5000
     depends_on:
       - "mongo"
+    networks:
+      - mongo-network
   mongo:
     image: mongo
     restart: always
     env_file: ./mongo-products-db/.env
     container_name: mongodb
-
+    networks:
+      - mongo-network
   mongo-express:
     image: mongo-express
     restart: always
@@ -41,3 +44,9 @@ services:
     container_name: mongodb-express
     depends_on:
       - "mongo"
+    networks:
+      - mongo-network
+
+networks:
+  mongo-network:
+    driver: bridge

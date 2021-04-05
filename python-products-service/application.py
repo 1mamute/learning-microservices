@@ -26,5 +26,8 @@ def get_products():
 def get_product(uuid):
   with open(dir_path + '/' + 'products.json') as json_file:
     data = json.load(json_file)
-    product = data['products'][0]
-    return json.dumps(product, indent=4)
+    for product in data['products']:
+      if (product['uuid'] == uuid):
+        return json.dumps(product, indent=4)
+      else:
+        return "Não encontrado"
