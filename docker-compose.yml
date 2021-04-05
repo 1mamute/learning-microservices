@@ -27,10 +27,13 @@ services:
     depends_on:
       - "mongo"
   mongo:
-    image: mongo
+    image: mongo:latest
     restart: always
     env_file: ./mongo-products-db/.env
     container_name: mongodb
+    volumes:
+      - ./mongo-products-db/products.json:/docker-entrypoint-initdb.d/products.json:ro
+      - ./mongo-products-db/initializing.sh:/docker-entrypoint-initdb.d/initializing.sh:ro
 
   mongo-express:
     image: mongo-express
