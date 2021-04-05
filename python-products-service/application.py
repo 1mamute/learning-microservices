@@ -1,9 +1,12 @@
 from flask import Flask
 from dotenv import load_dotenv
+from pymongo import MongoClient
+from bson.json_util import dumps
 import json
-import os
 
-dir_path = os.path.dirname(os.path.realpath(__file__))
+myclient = MongoClient("mongodb://root:example@mongodb:27017/")
+mydb = myclient["local"]
+mycol = mydb["products"]
 
 load_dotenv()
 
@@ -17,17 +20,12 @@ def index():
 
 @app.route('/products')
 def get_products():
-  with open(dir_path + '/' + 'products.json') as json_file:
-    data = json.load(json_file)
-    return json.dumps(data, indent=4)
+  products = mycol.find()
+  list_cur = list(products)
+  return dumps(list_cur, indent=4)
 
 
 @app.route('/product/<uuid>')
 def get_product(uuid):
-  with open(dir_path + '/' + 'products.json') as json_file:
-    data = json.load(json_file)
-    for product in data['products']:
-      if (product['uuid'] == uuid):
-        return json.dumps(product, indent=4)
-      else:
-        return "Não encontrado"
+  product = mycol.find_one({"_id": uuid})
+  return dumps(product, indent=4)

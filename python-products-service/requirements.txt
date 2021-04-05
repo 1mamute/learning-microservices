@@ -8,6 +8,7 @@ itsdangerous==1.1.0
 Jinja2==2.11.3
 MarkupSafe==1.1.1
 pycodestyle==2.7.0
+pymongo==3.11.3
 python-dotenv==0.16.0
 SQLAlchemy==1.4.4
 toml==0.10.2
