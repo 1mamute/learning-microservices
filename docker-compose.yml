@@ -77,6 +77,4 @@ services:
 
 networks:
   mongo-network:
-    driver: bridge
   nginx-network:
-    driver: bridge
