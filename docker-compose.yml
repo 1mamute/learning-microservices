@@ -8,6 +8,9 @@ services:
     container_name: nodejs-catalog-service
     ports:
       - 8000:8000
+    networks:
+      - nginx-network
+
   python-checkout-service:
     env_file: ./python-checkout-service/.env
     image: python-checkout-service:latest
@@ -16,6 +19,9 @@ services:
     container_name: python-checkout-service
     ports:
       - 8001:5000
+    networks:
+      - nginx-network
+
   python-products-service:
     env_file: ./python-products-service/.env
     image: python-products-service:latest
@@ -28,6 +34,8 @@ services:
       - "mongo"
     networks:
       - mongo-network
+      - nginx-network
+
   mongo:
     image: mongo:latest
     restart: always
@@ -38,6 +46,7 @@ services:
       - ./mongo-products-db/initializing.sh:/docker-entrypoint-initdb.d/initializing.sh:ro
     networks:
       - mongo-network
+
   mongo-express:
     image: mongo-express:latest
     restart: always
@@ -49,6 +58,8 @@ services:
       - "mongo"
     networks:
       - mongo-network
+      - nginx-network
+
   nginx:
     image: rproxy-nginx:latest
     restart: always
@@ -61,6 +72,11 @@ services:
       - python-products-service
       - python-checkout-service
       - nodejs-catalog-service
+    networks:
+      - nginx-network
+
 networks:
   mongo-network:
+    driver: bridge
+  nginx-network:
     driver: bridge
