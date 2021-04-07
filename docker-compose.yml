@@ -53,8 +53,8 @@ services:
     image: rproxy-nginx:latest
     restart: always
     container_name: nginx
-    env_file: ./nginx/.env
-    build: ./nginx/
+    env_file: ./rproxy-nginx/.env
+    build: ./rproxy-nginx/
     ports:
       - 80:80
 networks:
