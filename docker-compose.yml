@@ -57,6 +57,10 @@ services:
     build: ./rproxy-nginx/
     ports:
       - 80:80
+    depends_on:
+      - python-products-service
+      - python-checkout-service
+      - nodejs-catalog-service
 networks:
   mongo-network:
     driver: bridge
