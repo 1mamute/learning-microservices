@@ -8,8 +8,6 @@ services:
     container_name: nodejs-catalog-service
     ports:
       - 8000:8000
-    networks:
-      - nginx-network
 
   python-checkout-service:
     env_file: ./python-checkout-service/.env
@@ -19,8 +17,6 @@ services:
     container_name: python-checkout-service
     ports:
       - 8001:5000
-    networks:
-      - nginx-network
 
   python-products-service:
     env_file: ./python-products-service/.env
@@ -34,7 +30,6 @@ services:
       - "mongo"
     networks:
       - mongo-network
-      - nginx-network
 
   mongo:
     image: mongo:latest
@@ -58,23 +53,6 @@ services:
       - "mongo"
     networks:
       - mongo-network
-      - nginx-network
-
-  nginx:
-    image: rproxy-nginx:latest
-    restart: always
-    container_name: nginx
-    env_file: ./rproxy-nginx/.env
-    build: ./rproxy-nginx/
-    ports:
-      - 80:80
-    depends_on:
-      - python-products-service
-      - python-checkout-service
-      - nodejs-catalog-service
-    networks:
-      - nginx-network
 
 networks:
   mongo-network:
-  nginx-network:
