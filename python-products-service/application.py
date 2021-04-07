@@ -4,7 +4,7 @@ from pymongo import MongoClient
 from bson.json_util import dumps
 import json
 
-myclient = MongoClient("mongodb://root:example@mongodb:27017/")
+myclient = MongoClient("mongodb://root:example@mongo:27017/")
 mydb = myclient["local"]
 mycol = mydb["products"]
 

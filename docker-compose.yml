@@ -8,6 +8,8 @@ services:
     container_name: nodejs-catalog-service
     ports:
       - 8000:8000
+    networks:
+      - services-network
 
   python-checkout-service:
     env_file: ./python-checkout-service/.env
@@ -17,6 +19,8 @@ services:
     container_name: python-checkout-service
     ports:
       - 8001:5000
+    networks:
+      - services-network
 
   python-products-service:
     env_file: ./python-products-service/.env
@@ -30,6 +34,7 @@ services:
       - "mongo"
     networks:
       - mongo-network
+      - services-network
 
   mongo:
     image: mongo:latest
@@ -56,3 +61,4 @@ services:
 
 networks:
   mongo-network:
+  services-network:
