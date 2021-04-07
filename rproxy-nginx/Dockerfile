@@ -1,2 +1,3 @@
-FROM nginx
+FROM nginx:latest
+
 COPY . /etc/nginx

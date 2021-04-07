@@ -50,7 +50,7 @@ services:
     networks:
       - mongo-network
   nginx:
-    image: rproxy-nginx:latest
+    # image: rproxy-nginx:latest
     restart: always
     container_name: nginx
     env_file: ./rproxy-nginx/.env
