@@ -61,6 +61,14 @@ services:
       - python-products-service
       - python-checkout-service
       - nodejs-catalog-service
+  rabbitmq:
+    image: rabbitmq:management
+    hostname: rabbitmq-queue
+    # build: ./rabbit-queue/
+    container_name: rabbitmq-queue
+    ports:
+      - 5672:5672
+      - 15672:15672
 networks:
   mongo-network:
     driver: bridge
